@@ -15,15 +15,15 @@ public class Steps extends Base {
 
     @Given("The user is in the BBC Landing page")
     public void the_user_is_in_the_bbc_landing_page() {
-//        SIMO
+        bbcLandingPage.verifyThatBBCIsDisplayed();
     }
     @And("The user has selected the Formula one")
     public void the_user_has_selected_the_formula_one() {
-//          SIMO
+        bbcLandingPage.clickFormula1();
     }
     @And("The user has selected the Results")
     public void the_user_has_selected_the_results() {
-//          SIMO
+        bbcLandingPage.clickResults();
     }
     @And("The user has selected the year to report on")
     public void the_user_has_selected_the_year_to_report_on() {

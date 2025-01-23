@@ -10,5 +10,5 @@ public class Base {
    BrowserFactory browserFactory = new BrowserFactory();
    final WebDriver driver = browserFactory.startBrowser("chrome","https://www.bbc.com/sport");
 
-   BBCLandingPage accountPage = PageFactory.initElements(driver, BBCLandingPage.class);
+   BBCLandingPage bbcLandingPage = PageFactory.initElements(driver, BBCLandingPage.class);
 }
