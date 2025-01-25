@@ -33,6 +33,7 @@ public class Steps extends Base {
     }
     @And("The user collapse the currently opened results")
     public void the_user_collapse_the_currently_opened_results() {
+        sportIn2023PagePage.clickAbuDhabiGrandPrixYasMarina();
 //      Tlhogi
     }
     @When("The user click on the Las Vegas Grand Prix, Las Vegas Street Circuit")
