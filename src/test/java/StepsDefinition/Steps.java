@@ -26,8 +26,10 @@ public class Steps extends Base {
         bbcLandingPage.clickResults();
     }
     @And("The user has selected the year to report on")
-    public void the_user_has_selected_the_year_to_report_on() {
-//       Tlhogi
+    public void the_user_has_selected_the_year_to_report_on() throws InterruptedException {
+
+        bbcLandingPage.selectYear("2023");
+        Thread.sleep(5000);
     }
     @And("The user collapse the currently opened results")
     public void the_user_collapse_the_currently_opened_results() {
