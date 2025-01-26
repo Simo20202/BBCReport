@@ -9,6 +9,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.Test;
 
 public class Steps extends Base {
 
@@ -49,11 +52,16 @@ public class Steps extends Base {
     @Then("The Results table should be displayed")
     public void the_results_table_should_be_displayed() throws InterruptedException {
         sportIn2023PagePage.verifyVisibilityOfResultsTable();
+
     }
 
     @And("The user validate that Max Verstappen took 1st place")
     public void the_user_validate_that_max_verstappen_took_1st_place() {
-//     Sandile
+        Assert.assertTrue(sportIn2023PagePage.VerifyFirstPositionDriver());
+
+
+
+
     }
 
     @And("The user validate that George Russell finished 2nd")
@@ -75,7 +83,8 @@ public class Steps extends Base {
 
     }
 
-    @After
+
+   @After
     public void closeBrowser() {
         driver.quit();
     }
