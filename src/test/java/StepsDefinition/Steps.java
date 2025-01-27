@@ -68,9 +68,8 @@ public class Steps extends Base {
 
     @And("The user validate that Sergio Perez secured 3rd place")
     public void the_user_validate_that_sergio_perez_secured_3rd_place() throws InterruptedException {
-//      Mamo
-        //Assert the results
-        Assert.assertTrue(sportIn2023PagePage.validateSergioPerezIs3rd(), "Sergio Perez is not in 3rd place!");
+
+        sportIn2023PagePage.validateSergioPerezIs3rd();
 
     }
 

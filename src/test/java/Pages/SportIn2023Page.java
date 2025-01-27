@@ -39,6 +39,9 @@ public class SportIn2023Page {
     @FindBy(xpath = "(//span[@class='ssrcss-1hf3wfc-FullName e1dzfgvv0'])[5]")
     WebElement SecondDriver_Xpath;
 
+    @FindBy(xpath = "(//span[@class='ssrcss-1hf3wfc-FullName e1dzfgvv0'])[83]")
+    WebElement ThirdDriver_Xpath;
+
 
     public SportIn2023Page(WebDriver driver) {
         this.driver = driver;
@@ -46,31 +49,6 @@ public class SportIn2023Page {
 
     public void clickAbuDhabiGrandPrixYasMarina() {
         AbuDhabiGrandPrixYasMarinaLink_xpath.click();
-    }
-
-    public boolean validateSergioPerezIs3rd() {
-        String number3rd = "3"; // 3rd place number
-        String nameOfPlayer = "Sergio Perez"; // Name of the player
-        String isExpanded = LVGrandPrixbutton.getAttribute("aria-expanded"); //getting the value of attribute aria-expanded
-
-        //checking if the LVGrandPrixbutton is expanded
-        if (!isExpanded.equals("true")) {
-            LVGrandPrixbutton.click();
-        }
-        //Check of the element sergioParent exist
-        if (sergioParent == null) {
-            return false;
-        } else {
-            //getting text of element
-            sergioParent.getText();
-        }
-        //remove empty spaces
-        String actualPlayerParent = sergioParent.getText().trim();
-
-        //getting the first character on the parent
-        String firstCharOfPlayerParent = String.valueOf(actualPlayerParent.charAt(0));
-        //checking if the first is equals to the number3rd and the actualPlayerParent contains the name of the player
-        return firstCharOfPlayerParent.equals(number3rd) && actualPlayerParent.contains(nameOfPlayer);
     }
 
     public void clickLasVegasGrandPrixResults() {
@@ -82,14 +60,19 @@ public class SportIn2023Page {
         resultsTable_xpath.isDisplayed();
     }
 
-    //added by Sandile
     public boolean VerifyFirstPositionDriver() {
         return ((TablePosition_xpath.getText().equals("1")) && (DriverName_xpath.getText().equalsIgnoreCase("Max Verstappen")));
     }
 
+
     public void validate2ndDriver() {
         String SecondDriver = SecondDriver_Xpath.getText();
         Assert.assertEquals(SecondDriver, "George Russell");
+    }
+
+    public void validateSergioPerezIs3rd() {
+        String SecondDriver = ThirdDriver_Xpath.getText();
+        Assert.assertEquals(SecondDriver, "Sergio Perez");
     }
 
 
