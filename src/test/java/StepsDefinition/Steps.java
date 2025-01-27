@@ -73,6 +73,22 @@ public class Steps extends Base {
 
     }
 
+    @And("I click the search icon")
+    public void i_click_the_search_icon() {
+        bbcLandingPage.clickSearchIcon();
+    }
+
+    @When("I search {string}")
+    public void i_search(String string) throws InterruptedException {
+        bbcLandingPage.enterTheTextToSearch(string);
+        Thread.sleep(2000);
+    }
+
+    @Then("The relevant search results are displayed")
+    public void the_relevant_search_results_are_displayed() {
+
+    }
+
     @AfterStep
     public void addScreenshot(Scenario scenario) {
         if (scenario.isFailed()) {

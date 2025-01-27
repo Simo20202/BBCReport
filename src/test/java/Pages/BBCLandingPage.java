@@ -1,14 +1,11 @@
 package Pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.openqa.selenium.JavascriptExecutor;
 
 import java.time.Duration;
 import java.util.List;
@@ -31,6 +28,12 @@ public class BBCLandingPage {
     @FindBy(xpath = "//a[contains(@class, 'sp-c-date-picker-timeline__item')]//span[contains(text(),'2023')]")
     WebElement yearLink;
 
+    @FindBy(xpath = "//span[contains(.,'Search BBC')]")
+    WebElement searchIcon_xpath;
+
+    @FindBy(xpath = "//input[contains(@placeholder,'Search the BBC')]")
+    WebElement searchTextBox_xpath;
+
 
 
     public BBCLandingPage(WebDriver driver) {
@@ -49,6 +52,7 @@ public class BBCLandingPage {
     public void clickResults() {
         resultsLink_xpath.click();
     }
+
 
     public void selectYear(String year) throws InterruptedException {
         try {
@@ -93,6 +97,17 @@ public class BBCLandingPage {
             System.out.println("Current URL: " + driver.getCurrentUrl());
             throw e;
         }
+    }
+
+
+    public void clickSearchIcon() {
+        searchIcon_xpath.click();
+    }
+
+    public void enterTheTextToSearch(String searchText) {
+        searchTextBox_xpath.clear();
+        searchTextBox_xpath.sendKeys(searchText);
+        searchTextBox_xpath.sendKeys(Keys.RETURN);
     }
 
 }
