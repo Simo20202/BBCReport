@@ -67,6 +67,8 @@ public class Steps extends Base {
     @And("The user validate that George Russell finished 2nd")
     public void the_user_validate_that_george_russell_finished_2nd() {
 //    Papas
+        Assert.assertTrue(sportIn2023PagePage.validate2ndDriver(),"George Russell is not in 2nd place!");
+
     }
 
     @And("The user validate that Sergio Perez secured 3rd place")
