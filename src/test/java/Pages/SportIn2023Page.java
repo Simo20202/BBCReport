@@ -3,6 +3,12 @@ package Pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class SportIn2023Page {
     WebDriver driver;
@@ -18,23 +24,37 @@ public class SportIn2023Page {
 
     @FindBy(xpath = " (//button[@aria-expanded])[2]")
     private WebElement aria_expanded;
+    @FindBy(xpath = "//span[@data-js-text='true'][contains(.,'Las Vegas Grand Prix, Las Vegas Street Circuit')]")
+    WebElement LasVegasGrandPrixResults_xpath;
+
+    @FindBy(xpath = "(//th[contains(@class,'ssrcss-1jdu2ly-StyledTableHeading ep4g78u0')])[2]")
+    WebElement resultsTable_xpath;
+
+    @FindBy(xpath = "(//span[@aria-hidden='true'][contains(.,'1')])[12]")
+    public WebElement TablePosition_xpath;
+
+    @FindBy(xpath = "(//span[@class='ssrcss-1hf3wfc-FullName e1dzfgvv0'][contains(.,'Max Verstappen')])[2]")
+    public WebElement DriverName_xpath;
+
+    @FindBy(xpath = "(//span[@class='ssrcss-1hf3wfc-FullName e1dzfgvv0'])[5]")
+    WebElement SecondDriver_Xpath;
 
 
     public SportIn2023Page(WebDriver driver) {
         this.driver = driver;
     }
 
-        public void clickAbuDhabiGrandPrixYasMarina() {
-            AbuDhabiGrandPrixYasMarinaLink_xpath.click();
-        }
+    public void clickAbuDhabiGrandPrixYasMarina() {
+        AbuDhabiGrandPrixYasMarinaLink_xpath.click();
+    }
 
-    public boolean validateSergioPerezIs3rd(){
-      String number3rd = "3"; // 3rd place number
-      String nameOfPlayer = "Sergio Perez"; // Name of the player
+    public boolean validateSergioPerezIs3rd() {
+        String number3rd = "3"; // 3rd place number
+        String nameOfPlayer = "Sergio Perez"; // Name of the player
         String isExpanded = LVGrandPrixbutton.getAttribute("aria-expanded"); //getting the value of attribute aria-expanded
 
         //checking if the LVGrandPrixbutton is expanded
-        if(!isExpanded.equals("true")){
+        if (!isExpanded.equals("true")) {
             LVGrandPrixbutton.click();
         }
         //Check of the element sergioParent exist
@@ -52,6 +72,26 @@ public class SportIn2023Page {
         //checking if the first is equals to the number3rd and the actualPlayerParent contains the name of the player
         return firstCharOfPlayerParent.equals(number3rd) && actualPlayerParent.contains(nameOfPlayer);
     }
+
+    public void clickLasVegasGrandPrixResults() {
+        LasVegasGrandPrixResults_xpath.click();
+    }
+
+    public void verifyVisibilityOfResultsTable() {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(resultsTable_xpath));
+        resultsTable_xpath.isDisplayed();
+    }
+
+    //added by Sandile
+    public boolean VerifyFirstPositionDriver() {
+        return ((TablePosition_xpath.getText().equals("1")) && (DriverName_xpath.getText().equalsIgnoreCase("Max Verstappen")));
+    }
+
+    public void validate2ndDriver() {
+        String SecondDriver = SecondDriver_Xpath.getText();
+        Assert.assertEquals(SecondDriver, "George Russell");
+    }
+
 
 }
 
