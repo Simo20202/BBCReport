@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
+import static org.testng.Assert.assertTrue;
+
 public class BBCLandingPage {
 
     WebDriver driver;
@@ -33,6 +35,9 @@ public class BBCLandingPage {
 
     @FindBy(xpath = "//input[contains(@placeholder,'Search the BBC')]")
     WebElement searchTextBox_xpath;
+
+    @FindBy(xpath = "/html/body/div/div/div/div[2]/div/main/div[4]/div")
+    WebElement searchResults;
 
 
 
@@ -110,4 +115,26 @@ public class BBCLandingPage {
         searchTextBox_xpath.sendKeys(Keys.RETURN);
     }
 
+    public void searchResultsAreDisplayed() {
+        assertTrue(searchResults.isDisplayed());
+    }
+
+    public void validateTopResults() {
+        // Retrieve top search results
+        List<WebElement> topResults = driver.findElements(By.cssSelector(".search-results .result"));
+
+        // Calculate how many results to check (it should not exceed the list size)
+        int resultsToCheck = Math.min(topResults.size(), 4);
+
+        int count = 0;
+        for (WebElement result : topResults.subList(0, resultsToCheck)) {
+            String resultText = result.getText();
+            if (resultText.contains("2023") && (resultText.contains("sport") || resultText.contains("World Cup") || resultText.contains("Olympics"))) {
+                count++;
+            }
+        }
+
+        // Ensure at least 4 relevant results, or as many as are available
+        assertTrue(count >= resultsToCheck);
+    }
 }

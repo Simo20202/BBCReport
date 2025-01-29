@@ -84,9 +84,15 @@ public class Steps extends Base {
         Thread.sleep(2000);
     }
 
+    @Then("The search results are displayed")
+    public void the_search_results_are_displayed() {
+        bbcLandingPage.searchResultsAreDisplayed();
+
+    }
+
     @Then("The relevant search results are displayed")
     public void the_relevant_search_results_are_displayed() {
-
+        bbcLandingPage.validateTopResults();
     }
 
     @AfterStep
