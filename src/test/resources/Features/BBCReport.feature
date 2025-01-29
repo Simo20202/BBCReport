@@ -21,7 +21,8 @@ Feature: BBC Report
     Given The user is in the BBC Landing page
     And I click the search icon
     When I search "Sport in 2023"
-    Then The relevant search results are displayed
+    Then The search results are displayed
+    And The relevant search results are displayed
 
 
 
